@@ -13,7 +13,13 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
       colors: {
+        'news-card': 'hsl(var(--news-card-bg))',
+        'glow-cyan': 'hsl(var(--glow-cyan))',
+        'glow-red': 'hsl(var(--glow-red))',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
