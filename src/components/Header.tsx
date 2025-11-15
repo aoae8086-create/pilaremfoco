@@ -1,10 +1,18 @@
-import { Search, Menu } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
 import logo from "@/assets/logo.jpg";
 
 const Header = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const categories = ["Política", "Economia", "Tecnologia", "Esportes", "Cultura", "Mundo"];
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Buscando:", searchQuery);
+  };
 
   return (
     <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
@@ -24,15 +32,22 @@ const Header = () => {
           </div>
           
           <div className="flex items-center gap-4">
-            <div className="relative hidden md:flex items-center">
+            <form onSubmit={handleSearch} className="relative hidden md:flex items-center">
               <Search className="absolute left-3 h-4 w-4 text-muted-foreground" />
               <Input 
                 placeholder="Buscar notícias..." 
                 className="pl-10 w-64 bg-background/50 border-accent/30 focus:border-accent"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
-            </div>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
+            </form>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
@@ -44,11 +59,40 @@ const Header = () => {
               key={category}
               variant="ghost"
               className="text-sm font-semibold hover:text-accent hover:bg-accent/10 transition-colors"
+              onClick={() => console.log("Categoria:", category)}
             >
               {category}
             </Button>
           ))}
         </nav>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <nav className="md:hidden pb-3 space-y-1 animate-fade-in">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant="ghost"
+                className="w-full justify-start text-sm font-semibold hover:text-accent hover:bg-accent/10 transition-colors"
+                onClick={() => {
+                  console.log("Categoria:", category);
+                  setMobileMenuOpen(false);
+                }}
+              >
+                {category}
+              </Button>
+            ))}
+            <form onSubmit={handleSearch} className="relative flex items-center pt-2">
+              <Search className="absolute left-3 h-4 w-4 text-muted-foreground" />
+              <Input 
+                placeholder="Buscar notícias..." 
+                className="pl-10 w-full bg-background/50 border-accent/30 focus:border-accent"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </form>
+          </nav>
+        )}
       </div>
     </header>
   );

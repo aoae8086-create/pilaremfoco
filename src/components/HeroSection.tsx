@@ -1,7 +1,12 @@
 import { Clock } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
+  const handleReadMore = () => {
+    console.log("Lendo notícia principal");
+  };
+
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-background via-card to-background border-b border-accent/20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(0,217,255,0.1),transparent_50%)]" />
@@ -19,9 +24,17 @@ const HeroSection = () => {
             <p className="text-lg text-muted-foreground">
               Plataformas de notícias adotam inteligência artificial para entregar conteúdo personalizado e verificar informações em tempo real.
             </p>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
-              <Clock className="h-4 w-4" />
-              <span>Publicado há 2 horas</span>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Clock className="h-4 w-4" />
+                <span>Publicado há 2 horas</span>
+              </div>
+              <Button 
+                onClick={handleReadMore}
+                className="bg-accent hover:bg-accent/90 text-accent-foreground font-bold"
+              >
+                Ler Mais
+              </Button>
             </div>
           </div>
           

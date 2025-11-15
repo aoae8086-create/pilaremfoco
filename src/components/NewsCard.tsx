@@ -11,8 +11,12 @@ interface NewsCardProps {
 }
 
 const NewsCard = ({ title, excerpt, category, image, time, views }: NewsCardProps) => {
+  const handleClick = () => {
+    console.log("Abrindo notícia:", title);
+  };
+
   return (
-    <article className="group cursor-pointer">
+    <article className="group cursor-pointer" onClick={handleClick}>
       <div className="bg-news-card rounded-xl overflow-hidden border border-border/50 hover:border-accent/50 transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,217,255,0.2)]">
         <div className="relative aspect-video overflow-hidden">
           <img 
