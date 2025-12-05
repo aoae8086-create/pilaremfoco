@@ -17,7 +17,7 @@ const PoliceReportsSection = () => {
   const { data: reports, isLoading } = useQuery({
     queryKey: ['police_reports'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('police_reports')
         .select('*')
         .order('report_date', { ascending: false })

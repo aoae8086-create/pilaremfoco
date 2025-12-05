@@ -26,18 +26,18 @@ const CouncilorsManagement = () => {
   const { data: councilors } = useQuery({
     queryKey: ['admin_councilors'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('councilors')
         .select('*')
         .order('name');
       if (error) throw error;
-      return data;
+      return data as any[];
     },
   });
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const { error } = await supabase.from('councilors').insert([data]);
+      const { error } = await (supabase as any).from('councilors').insert([data]);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -50,7 +50,7 @@ const CouncilorsManagement = () => {
 
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: string; data: typeof formData }) => {
-      const { error } = await supabase.from('councilors').update(data).eq('id', id);
+      const { error } = await (supabase as any).from('councilors').update(data).eq('id', id);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -63,7 +63,7 @@ const CouncilorsManagement = () => {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from('councilors').delete().eq('id', id);
+      const { error } = await (supabase as any).from('councilors').delete().eq('id', id);
       if (error) throw error;
     },
     onSuccess: () => {

@@ -17,7 +17,7 @@ const CouncilorsSection = () => {
   const { data: councilors, isLoading } = useQuery({
     queryKey: ['councilors'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('councilors')
         .select('*')
         .order('name');

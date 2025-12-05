@@ -15,7 +15,7 @@ const PartnershipsSection = () => {
   const { data: partnerships, isLoading } = useQuery({
     queryKey: ['partnerships'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('partnerships')
         .select('*')
         .order('name');
