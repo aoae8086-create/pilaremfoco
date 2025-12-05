@@ -9,6 +9,7 @@ import Noticias from "./pages/Noticias";
 import Vereadores from "./pages/Vereadores";
 import Ocorrencias from "./pages/Ocorrencias";
 import Denuncias from "./pages/Denuncias";
+import Zoonoses from "./pages/Zoonoses";
 import Parcerias from "./pages/Parcerias";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/vereadores" element={<MainLayout><Vereadores /></MainLayout>} />
           <Route path="/ocorrencias" element={<MainLayout><Ocorrencias /></MainLayout>} />
           <Route path="/denuncias" element={<MainLayout><Denuncias /></MainLayout>} />
+          <Route path="/zoonoses" element={<MainLayout><Zoonoses /></MainLayout>} />
           <Route path="/parcerias" element={<MainLayout><Parcerias /></MainLayout>} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
