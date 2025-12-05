@@ -16,7 +16,7 @@ const NewsGrid = () => {
   const { data: news, isLoading } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('news')
         .select('*')
         .eq('published', true)

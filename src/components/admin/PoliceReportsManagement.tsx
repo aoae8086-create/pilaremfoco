@@ -24,18 +24,18 @@ const PoliceReportsManagement = () => {
   const { data: reports } = useQuery({
     queryKey: ['admin_police_reports'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('police_reports')
         .select('*')
         .order('report_date', { ascending: false });
       if (error) throw error;
-      return data;
+      return data as any[];
     },
   });
 
   const createMutation = useMutation({
     mutationFn: async (data: typeof formData) => {
-      const { error } = await supabase.from('police_reports').insert([data]);
+      const { error } = await (supabase as any).from('police_reports').insert([data]);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -48,7 +48,7 @@ const PoliceReportsManagement = () => {
 
   const updateMutation = useMutation({
     mutationFn: async ({ id, data }: { id: string; data: typeof formData }) => {
-      const { error } = await supabase.from('police_reports').update(data).eq('id', id);
+      const { error } = await (supabase as any).from('police_reports').update(data).eq('id', id);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -61,7 +61,7 @@ const PoliceReportsManagement = () => {
 
   const deleteMutation = useMutation({
     mutationFn: async (id: string) => {
-      const { error } = await supabase.from('police_reports').delete().eq('id', id);
+      const { error } = await (supabase as any).from('police_reports').delete().eq('id', id);
       if (error) throw error;
     },
     onSuccess: () => {
