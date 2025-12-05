@@ -1,4 +1,4 @@
-import { Search, Menu, X, Newspaper, Users, Shield, AlertTriangle, Handshake, Home } from "lucide-react";
+import { Search, Menu, X, Newspaper, Users, Shield, AlertTriangle, Handshake, Home, Bug } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
@@ -16,6 +16,7 @@ const Header = () => {
     { title: "Vereadores", url: "/vereadores", icon: Users },
     { title: "Ocorrências", url: "/ocorrencias", icon: Shield },
     { title: "Denúncias", url: "/denuncias", icon: AlertTriangle },
+    { title: "Zoonoses", url: "/zoonoses", icon: Bug },
     { title: "Parcerias", url: "/parcerias", icon: Handshake },
   ];
 
