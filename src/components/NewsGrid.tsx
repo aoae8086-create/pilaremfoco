@@ -55,25 +55,25 @@ const NewsGrid = () => {
 
   if (isLoading) {
     return (
-      <section className="container mx-auto px-4 py-12">
-        <div className="flex justify-center items-center min-h-[400px]">
-          <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      <section className="px-3 sm:px-4 py-6 sm:py-12">
+        <div className="flex justify-center items-center min-h-[200px] sm:min-h-[400px]">
+          <Loader2 className="w-6 h-6 sm:w-8 sm:h-8 animate-spin text-primary" />
         </div>
       </section>
     );
   }
 
   return (
-    <section className="container mx-auto px-4 py-12">
-      <div className="mb-8">
-        <h2 className="text-3xl font-black mb-2">
+    <section className="px-3 sm:px-4 py-6 sm:py-12">
+      <div className="mb-4 sm:mb-8">
+        <h2 className="text-xl sm:text-3xl font-black mb-2">
           Últimas <span className="text-accent">Notícias</span>
         </h2>
-        <div className="h-1 w-20 bg-gradient-to-r from-accent to-secondary rounded-full" />
+        <div className="h-1 w-16 sm:w-20 bg-gradient-to-r from-accent to-secondary rounded-full" />
       </div>
       
       {news && news.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
           {news.map((item) => (
             <NewsCard 
               key={item.id}
@@ -87,8 +87,8 @@ const NewsGrid = () => {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12">
-          <p className="text-muted-foreground text-lg">
+        <div className="text-center py-8 sm:py-12">
+          <p className="text-muted-foreground text-sm sm:text-lg">
             Nenhuma notícia publicada ainda.
           </p>
         </div>
