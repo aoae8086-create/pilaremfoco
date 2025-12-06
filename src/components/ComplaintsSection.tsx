@@ -41,40 +41,42 @@ const ComplaintsSection = () => {
   };
 
   return (
-    <section className="py-16 px-4 bg-gradient-to-br from-accent/5 to-background">
-      <div className="container mx-auto max-w-4xl">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-foreground mb-4">
+    <section className="py-6 sm:py-16">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-6 sm:mb-12">
+          <h2 className="text-2xl sm:text-4xl font-bold text-foreground mb-2 sm:mb-4">
             Central de Denúncias
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground text-sm sm:text-lg">
             Denuncie de forma segura via WhatsApp
           </p>
         </div>
 
-        <div className="bg-card rounded-xl shadow-lg border border-border p-8 space-y-6">
+        <div className="bg-card rounded-lg sm:rounded-xl shadow-lg border border-border p-4 sm:p-8 space-y-4 sm:space-y-6">
           {contacts.map((contact, index) => (
             <div 
               key={index}
-              className={`flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6 ${contact.bgColor} rounded-lg border ${contact.borderColor}`}
+              className={`flex flex-col gap-3 p-4 sm:p-6 ${contact.bgColor} rounded-lg border ${contact.borderColor}`}
             >
-              <contact.icon className={`w-12 h-12 ${contact.iconColor} flex-shrink-0`} />
-              <div className="flex-1">
-                <h3 className="text-xl font-bold text-foreground mb-2">
-                  {contact.title}
-                </h3>
-                <div className="flex items-center gap-2 mb-4">
-                  <Phone className="w-5 h-5 text-muted-foreground" />
-                  <span className="font-semibold text-foreground">{contact.displayNumber}</span>
+              <div className="flex items-center gap-3">
+                <contact.icon className={`w-8 h-8 sm:w-12 sm:h-12 ${contact.iconColor} flex-shrink-0`} />
+                <div>
+                  <h3 className="text-base sm:text-xl font-bold text-foreground">
+                    {contact.title}
+                  </h3>
+                  <div className="flex items-center gap-2">
+                    <Phone className="w-4 h-4 text-muted-foreground" />
+                    <span className="font-semibold text-foreground text-sm sm:text-base">{contact.displayNumber}</span>
+                  </div>
                 </div>
-                <Button 
-                  onClick={() => handleWhatsAppClick(contact.number, contact.message)}
-                  className="w-full sm:w-auto bg-[#25D366] hover:bg-[#20BA5A] text-white"
-                >
-                  <MessageCircle className="w-5 h-5 mr-2" />
-                  Enviar via WhatsApp
-                </Button>
               </div>
+              <Button 
+                onClick={() => handleWhatsAppClick(contact.number, contact.message)}
+                className="w-full bg-[#25D366] hover:bg-[#20BA5A] active:bg-[#1DA851] text-white h-12"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Enviar via WhatsApp
+              </Button>
             </div>
           ))}
         </div>
