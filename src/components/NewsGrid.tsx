@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import NewsCard from "./NewsCard";
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
 
 interface News {
   id: string;
@@ -13,6 +14,8 @@ interface News {
 }
 
 const NewsGrid = () => {
+  const queryClient = useQueryClient();
+
   const { data: news, isLoading } = useQuery({
     queryKey: ['news'],
     queryFn: async () => {
@@ -27,6 +30,28 @@ const NewsGrid = () => {
       return data as News[];
     },
   });
+
+  // Real-time subscription for news updates
+  useEffect(() => {
+    const channel = supabase
+      .channel('news-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'news'
+        },
+        () => {
+          queryClient.invalidateQueries({ queryKey: ['news'] });
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [queryClient]);
 
   if (isLoading) {
     return (
