@@ -39,7 +39,7 @@ const Footer = () => {
             <ul className="space-y-2 text-sm">
               <li><button onClick={() => console.log("Sobre Nós")} className="text-muted-foreground hover:text-accent transition-colors">Sobre Nós</button></li>
               <li><button onClick={() => console.log("Contato")} className="text-muted-foreground hover:text-accent transition-colors">Contato</button></li>
-              <li><button onClick={() => console.log("Política de Privacidade")} className="text-muted-foreground hover:text-accent transition-colors">Política de Privacidade</button></li>
+              <li><a href="/admin" className="text-muted-foreground hover:text-accent transition-colors">Área Administrativa</a></li>
               <li><button onClick={() => console.log("Termos de Uso")} className="text-muted-foreground hover:text-accent transition-colors">Termos de Uso</button></li>
             </ul>
           </div>
